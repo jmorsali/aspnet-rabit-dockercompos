@@ -10,7 +10,7 @@ namespace worker
         public static async Task PostMessage(string postData)
         {
             var json = JsonConvert.SerializeObject(postData);
-            var content = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             using (var httpClientHandler = new HttpClientHandler())
             {
