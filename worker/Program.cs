@@ -1,44 +1,25 @@
 ﻿using System;
-using System.Net.Http;
 using System.Threading.Tasks;
-using System.Net.Http.Headers;
 using System.Text;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using Newtonsoft.Json;
 
 namespace worker
 {
     class Program
     {
-        public static async Task PostMessage(string postData)
-        {
-            var json = JsonConvert.SerializeObject(postData);
-            var content = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-
-            using (var httpClientHandler = new HttpClientHandler())
-            {
-                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
-                using (var client = new HttpClient(httpClientHandler))
-                {
-                    var result = await client.PostAsync("http://publisher_api:80/api/Values", content);
-                    string resultContent = await result.Content.ReadAsStringAsync();
-                }
-            }
-        }
-
         static void Main(string[] args)
         {
             while (true)
             {
-                string[] testStrings = new string[] { "one", "two", "three", "four", "five" };
+                string[] testStrings = new string[] { "message one", "message two", "message three", "message four", "message five" };
 
                 Console.WriteLine("Sleeping to wait for Rabbit***********************************");
                 Task.Delay(10000).Wait();
                 Console.WriteLine("Posting messages to webApi??????????????????????????????????????");
                 for (int i = 0; i < 5; i++)
                 {
-                    PostMessage(testStrings[i]).Wait();
+                    ServiceClient.PostMessage(testStrings[i]).Wait();
                 }
 
                 Task.Delay(1000).Wait();
@@ -56,16 +37,19 @@ namespace worker
                                         arguments: null);
 
                 var consumer = new EventingBasicConsumer(channel);
-                consumer.Received += (model, ea) =>
-                {
-                    var body = ea.Body;
-                    var message = Encoding.UTF8.GetString(body);
-                    Console.WriteLine(" [x] Received from Rabbit: {0}", message);
-                };
+                consumer.Received += OnMessageReceived;
                 channel.BasicConsume(queue: "hello",
                                         autoAck: true,
                                         consumer: consumer);
             }
+        }
+
+        private static void OnMessageReceived(object sender, BasicDeliverEventArgs e)
+        {
+            var body = e.Body;
+            var message = Encoding.UTF8.GetString(body);
+            Console.WriteLine(" [x] Received from Rabbit: {0}", message);
+
         }
     }
 }
