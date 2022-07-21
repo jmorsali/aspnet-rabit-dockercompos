@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Text;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using System.Data.SqlClient;
 
 namespace worker
 {
@@ -47,9 +48,32 @@ namespace worker
         private static void OnMessageReceived(object sender, BasicDeliverEventArgs e)
         {
             var body = e.Body;
-            var message = Encoding.UTF8.GetString(body);
+            var message = Encoding.UTF8.GetString(body.ToArray());
             Console.WriteLine(" [x] Received from Rabbit: {0}", message);
+            SaveMessageToDB(message);
 
+        }
+
+        private static void SaveMessageToDB(string message)
+        {
+            using (var connection = new SqlConnection("Server=db;Database=MQRepository;User ID= sa;password=@A123456789@;MultipleActiveResultSets=True"))
+            {
+                using (var command = new SqlCommand("",connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        command.CommandType = System.Data.CommandType.Text;
+                        command.CommandText = $"Insert Into TBL_LOG (Id,Message) Values ('{Guid.NewGuid()}','{message}')";
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                        Console.WriteLine(" [x] stored in DB from Rabbit: {0}", message);
+                    }
+                    catch (Exception ex){
+                        Console.WriteLine("Error In Insert To DB: {0}", ex);
+                    }
+                }
+            }
         }
     }
 }
