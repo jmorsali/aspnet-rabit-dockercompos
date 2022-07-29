@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using publisher_api.Services;
 
@@ -16,7 +14,7 @@ namespace publisher_api.Controllers
         {
             _messageService = messageService;
         }
-        // GET api/values
+
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
@@ -24,10 +22,11 @@ namespace publisher_api.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] string payload)
+        public ActionResult<bool> Post([FromBody] string payload)
         {
             Console.WriteLine("received a Post: " + payload);
-            _messageService.Enqueue(payload);
+            var result = _messageService.Enqueue(payload);
+            return Ok(result);
         }
 
     }

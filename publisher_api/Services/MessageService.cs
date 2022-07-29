@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 
 namespace publisher_api.Services
@@ -12,18 +13,21 @@ namespace publisher_api.Services
 
     public class MessageService : IMessageService
     {
-        ConnectionFactory _factory;
-        IConnection _conn;
-        IModel _channel;
-        public MessageService()
+        readonly IModel _channel;
+        public MessageService(IConfiguration configuration)
         {
+            var configuration1 = configuration;
             Console.WriteLine("about to connect to rabbit");
 
-            _factory = new ConnectionFactory() { HostName = "rabbitmq", Port = 5672 };
-            _factory.UserName = "guest";
-            _factory.Password = "guest";
-            _conn = _factory.CreateConnection();
-            _channel = _conn.CreateModel();
+            var factory = new ConnectionFactory
+            {
+                HostName = configuration1.GetSection("Rabbit:Server").Value, //rabbitmq
+                Port = Convert.ToInt32(configuration1.GetSection("Rabbit:Port").Value), //5672,
+                UserName = configuration1.GetSection("Rabbit:UserName").Value, //"guest",
+                Password = configuration1.GetSection("Rabbit:Password").Value, //"guest"
+            };
+            var conn = factory.CreateConnection();
+            _channel = conn.CreateModel();
             _channel.QueueDeclare(queue: "hello",
                                     durable: false,
                                     exclusive: false,

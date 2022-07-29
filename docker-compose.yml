@@ -31,8 +31,8 @@ services:
       environment:
           MSSQL_SA_PASSWORD: "@A123456789@"
           ACCEPT_EULA: "Y"
-      ports:
-        - "1433:1433"
+      #ports:
+      #  - "1433:1433"
       volumes:
         -  "C:\\My Space\\DB\\docker-compos\\data:/var/opt/mssql/data"
         -  "C:\\My Space\\DB\\docker-compos\\log:/var/opt/mssql/log"
