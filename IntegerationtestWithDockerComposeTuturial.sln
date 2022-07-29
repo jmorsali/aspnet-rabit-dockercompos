@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "publisher_api", "publisher_api\publisher_api.csproj", "{92321DA8-5444-4B36-99F3-5ED26492762E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "worker", "worker\worker.csproj", "{6436D923-830E-4689-9820-3F43B10B3148}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "consumer.worker", "worker\consumer.worker.csproj", "{6436D923-830E-4689-9820-3F43B10B3148}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "compose", "compose", "{E395CD71-C870-4510-B779-B6484BA94698}"
 	ProjectSection(SolutionItems) = preProject
