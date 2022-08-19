@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dockercompose.IntegerationT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StressTest", "StressTest", "{0C5B7891-EEA7-4EF7-A26A-DD7D6D19AF3D}"
 	ProjectSection(SolutionItems) = preProject
-		Script1.js = Script1.js
+		K6.js = K6.js
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consumer_Worker", "Consumer_Worker\Consumer_Worker.csproj", "{4466C21B-C623-4E62-9661-09A6AA989F79}"

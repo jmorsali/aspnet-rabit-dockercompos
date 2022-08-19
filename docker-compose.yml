@@ -9,6 +9,7 @@ services:
 
   worker:
     image: ${DOCKER_REGISTRY-}consumerworker
+    restart: always
     build:
       context: .
       dockerfile: consumer_worker/Dockerfile

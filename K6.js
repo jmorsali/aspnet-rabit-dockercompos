@@ -11,24 +11,26 @@ export const requests = new Counter('http_reqs');
 
 export const options = {
     stages: [
-        { target: 20, duration: '1m' },
-        { target: 15, duration: '1m' },
+        { target: 1, duration: '1m' },
+        { target: 2, duration: '1m' },
         { target: 0, duration: '1m' },
     ],
     thresholds: {
-        http_reqs: ['count < 100'],
+        http_reqs: ['count < 10'],
     },
 };
 
 export default function () {
     // our HTTP request, note that we are saving the response to res, which can be accessed later
 
-    
-    const url = 'http://localhost:62608/api/values';
-    const payload = JSON.stringify({
-        email: 'aaa',
-        password: 'bbb',
-    });
+
+    const url = 'https://localhost:50205/api/values';
+    //const payload = JSON.stringify({
+    //    email: 'aaa',
+    //    password: 'bbb',
+    //});
+
+    const payload = "TEST XXXX";
 
     const params = {
         headers: {
@@ -40,8 +42,8 @@ export default function () {
 
     sleep(1);
 
-    const checkRes = check(res, {
-        'status is 200': (r) => r.status === 200,
-        'response body': (r) => r.body.indexOf('Feel free to browse') !== -1,
-    });
+    //const checkRes = check(res, {
+    //    'status is 200': (r) => r.status === 200,
+    //    'response body': (r) => r.body.indexOf('Feel free to browse') !== -1,
+    //});
 }
