@@ -16,15 +16,14 @@ namespace publisher_api.Services
         readonly IModel _channel;
         public MessageService(IConfiguration configuration)
         {
-            var configuration1 = configuration;
             Console.WriteLine("about to connect to rabbit");
 
             var factory = new ConnectionFactory
             {
-                HostName = configuration1.GetSection("Rabbit:Server").Value, //rabbitmq
-                Port = Convert.ToInt32(configuration1.GetSection("Rabbit:Port").Value), //5672,
-                UserName = configuration1.GetSection("Rabbit:UserName").Value, //"guest",
-                Password = configuration1.GetSection("Rabbit:Password").Value, //"guest"
+                HostName = configuration.GetSection("Rabbit:Server").Value, //rabbitmq
+                Port = Convert.ToInt32(configuration.GetSection("Rabbit:Port").Value), //5672,
+                UserName = configuration.GetSection("Rabbit:UserName").Value, //"guest",
+                Password = configuration.GetSection("Rabbit:Password").Value, //"guest"
             };
             var conn = factory.CreateConnection();
             _channel = conn.CreateModel();
