@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace worker.Model;
+namespace Consumer_Worker.Model;
 
 public class MqLogMessageRepository : IMqLogMessageRepository
 {

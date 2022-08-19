@@ -2,13 +2,11 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using worker.Model;
+using Consumer_Worker.Model;
 
 #nullable disable
 
-namespace worker.Migrations
+namespace Consumer_Worker.Migrations
 {
     [DbContext(typeof(MessagesStoreContext))]
     partial class MessagesStoreContextModelSnapshot : ModelSnapshot

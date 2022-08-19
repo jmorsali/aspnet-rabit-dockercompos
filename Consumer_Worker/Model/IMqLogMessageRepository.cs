@@ -1,4 +1,4 @@
-﻿namespace worker.Model;
+﻿namespace Consumer_Worker.Model;
 
 public interface IMqLogMessageRepository
 {

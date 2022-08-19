@@ -2,15 +2,15 @@
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Consumer_Worker.Model;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using worker.Model;
 
-namespace worker;
+namespace Consumer_Worker;
 
 public class Worker : BackgroundService
 {

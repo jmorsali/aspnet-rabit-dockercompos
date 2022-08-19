@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 
-namespace worker.Model;
+namespace Consumer_Worker.Model;
 
 public class MessagesStoreContext : DbContext
 {
@@ -22,6 +22,6 @@ public class MessagesStoreContext : DbContext
     //    base.OnModelCreating(modelBuilder);
     //}
     //entities
-    public Microsoft.EntityFrameworkCore.DbSet<MQLogMessages> Students { get; set; }
+    public DbSet<MQLogMessages> Students { get; set; }
 }
 

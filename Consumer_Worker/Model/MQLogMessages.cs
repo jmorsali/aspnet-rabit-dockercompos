@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace worker.Model
+namespace Consumer_Worker.Model
 {
     public class MQLogMessages
     {

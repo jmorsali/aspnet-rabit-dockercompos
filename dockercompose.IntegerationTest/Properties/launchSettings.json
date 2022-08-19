@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "dockercompose.IntegerationTest": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

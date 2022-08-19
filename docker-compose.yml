@@ -2,16 +2,16 @@ version: '3.4'
 
 services:
   publisher_api:
-    build: ./publisher_api
-    restart: always
+    image: ${DOCKER_REGISTRY-}publisherapi
+    build:
+      context: .
+      dockerfile: publisher_api/Dockerfile
 
   worker:
-    build: ./consumer.worker
-    restart: always
-    depends_on:
-      - "publisher_api"
-      - "rabbitmq"
-      - "db"
+    image: ${DOCKER_REGISTRY-}consumerworker
+    build:
+      context: .
+      dockerfile: consumer_worker/Dockerfile
 
   rabbitmq: # login guest:guest
     image: rabbitmq:3-management
@@ -26,6 +26,7 @@ services:
     - "15671:15671"
     - "15672:15672"
 
+ 
   db:
       image: "mcr.microsoft.com/mssql/server"
       environment:
@@ -37,6 +38,3 @@ services:
         -  "C:\\My Space\\DB\\docker-compos\\data:/var/opt/mssql/data"
         -  "C:\\My Space\\DB\\docker-compos\\log:/var/opt/mssql/log"
         -  "C:\\My Space\\DB\\docker-compos\\secrets:/var/opt/mssql/secrets"
-
-
-            

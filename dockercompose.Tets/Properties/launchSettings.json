@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "dockercompose.Tets": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

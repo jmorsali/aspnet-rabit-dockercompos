@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace worker
+namespace Consumer_Worker
 {
     public interface IServiceClient
     {

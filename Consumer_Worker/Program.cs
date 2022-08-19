@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Configuration;
 using System.IO;
+using Consumer_Worker.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using worker.Model;
 
-namespace worker
+
+namespace Consumer_Worker
 {
     static class Program
     {
