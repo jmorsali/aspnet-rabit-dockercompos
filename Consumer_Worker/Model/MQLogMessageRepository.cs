@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Hierarchy;
 
 namespace Consumer_Worker.Model;
 
@@ -12,7 +13,7 @@ public class MqLogMessageRepository : IMqLogMessageRepository
     }
     public void SaveMessageToDb(string message)
     {
-        var dbmMessage = new MQLogMessages { Id = Guid.NewGuid(), Message = message };
+        var dbmMessage = new MQLogMessages { uId = Guid.NewGuid(), Message = message , CreateDateTime=DateTime.Now};
         _context.Add(dbmMessage);
         _context.SaveChanges();
     }

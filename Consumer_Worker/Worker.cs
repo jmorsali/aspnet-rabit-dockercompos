@@ -32,7 +32,7 @@ public class Worker : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            string[] testStrings = new string[] { "message one", "message two", "message three", "message four", "message five" };
+            string[] testStrings = { "message one", "message two", "message three", "message four", "message five" };
 
             Console.WriteLine("Sleeping to wait for Rabbit***********************************");
             //await Task.Delay(10000, stoppingToken).WaitAsync(stoppingToken);
@@ -41,8 +41,7 @@ public class Worker : BackgroundService
             {
                 try
                 {
-                    await _serviceClient.PostMessage(testStrings[i]).WaitAsync(stoppingToken);
-
+                    await _serviceClient.PostMessage($"{testStrings[i]} ---- {DateTime.Now}").WaitAsync(stoppingToken);
                 }
                 catch (Exception e)
                 {
@@ -50,7 +49,7 @@ public class Worker : BackgroundService
                 }
             }
 
-            await Task.Delay(1000, stoppingToken).WaitAsync(stoppingToken);
+            //await Task.Delay(1000, stoppingToken).WaitAsync(stoppingToken);
             Console.WriteLine("Consuming Queue Now");
 
             ConnectionFactory factory = new ConnectionFactory

@@ -23,7 +23,20 @@ export const options = {
 export default function () {
     // our HTTP request, note that we are saving the response to res, which can be accessed later
 
-    const res = http.get('http://test.k6.io');
+    
+    const url = 'http://localhost:62608/api/values';
+    const payload = JSON.stringify({
+        email: 'aaa',
+        password: 'bbb',
+    });
+
+    const params = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    http.post(url, payload, params);
 
     sleep(1);
 

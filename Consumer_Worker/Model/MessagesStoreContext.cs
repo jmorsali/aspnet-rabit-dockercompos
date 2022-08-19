@@ -22,6 +22,6 @@ public class MessagesStoreContext : DbContext
     //    base.OnModelCreating(modelBuilder);
     //}
     //entities
-    public DbSet<MQLogMessages> Students { get; set; }
+    public DbSet<MQLogMessages> MQMessageStore { get; set; }
 }
 

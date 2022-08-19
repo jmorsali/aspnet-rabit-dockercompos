@@ -1,14 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity.Hierarchy;
 
 namespace Consumer_Worker.Model
 {
     public class MQLogMessages
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
+        public Guid uId { get; set; }
         public string Message { get; set; }
+
+        public DateTime CreateDateTime { get; set; }
+        //public HierarchyId ConcurrencyToken { get; set; }
     }
 }
