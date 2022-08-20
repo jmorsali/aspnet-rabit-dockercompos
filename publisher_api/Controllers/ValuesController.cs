@@ -22,12 +22,18 @@ namespace publisher_api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<bool> Post([FromBody] string payload)
+        public ActionResult<bool> Post([FromBody] MessageInfo payload)
         {
             Console.WriteLine("received a Post: " + payload);
-            var result = _messageService.Enqueue(payload);
+            var result = _messageService.Enqueue(payload.Message + "===" + payload.ReceiveDateTime);
             return Ok(result);
         }
 
+    }
+
+    public class MessageInfo
+    {
+        public string Message { get; set; }
+        public DateTime ReceiveDateTime { get; set; }
     }
 }

@@ -14,14 +14,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dockercompose.Tets", "docke
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dockercompose.IntegerationTest", "dockercompose.IntegerationTest\dockercompose.IntegerationTest.csproj", "{9D0E49A4-0DAA-475E-BC21-CC8E7B79578B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StressTest", "StressTest", "{0C5B7891-EEA7-4EF7-A26A-DD7D6D19AF3D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K6", "K6", "{0C5B7891-EEA7-4EF7-A26A-DD7D6D19AF3D}"
 	ProjectSection(SolutionItems) = preProject
-		K6.js = K6.js
+		K6\commandss.txt = K6\commandss.txt
+		K6\docker-compose.yml = K6\docker-compose.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consumer_Worker", "Consumer_Worker\Consumer_Worker.csproj", "{4466C21B-C623-4E62-9661-09A6AA989F79}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{91084A79-B5E3-4D99-89C7-A59C80D8F3D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{2F54D298-E464-4866-87DB-50448100E3F7}"
+	ProjectSection(SolutionItems) = preProject
+		K6\samples\apitest.js = K6\samples\apitest.js
+		K6\samples\K6.js = K6\samples\K6.js
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +103,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2F54D298-E464-4866-87DB-50448100E3F7} = {0C5B7891-EEA7-4EF7-A26A-DD7D6D19AF3D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {218786C9-55DA-4E73-A2B8-DFB7B6ADBC2F}
